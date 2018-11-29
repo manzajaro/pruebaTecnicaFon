@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="showSpecialties = !showSpecialties">
+        Change To
+        <ion-icon slot="end" [name]="(showSpecialties) ? 'person' : 'school'"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!showSpecialties" (click)="addNewUser()">
+        Add User
+        <ion-icon slot="end"  name="person-add"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="showSpecialties" (click)="addNewSpecialty()">
+        Add Specialty
+        <ion-icon slot="end"  name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Fon Users APP
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="!showSpecialties">
+    <ion-item-sliding *ngFor="let user of Users" #slidingItem>
+      <ion-item [href]="'/users/'+user.id">
+        <ion-avatar slot="start">
+          <img [src]="(user.avatar) ? user.avatar : 'https://picsum.photos/100'" (error)="updateUrl($event)"/>
+        </ion-avatar>
+        <ion-icon [name]="user.icon" slot="start"></ion-icon>
+        <ion-label>{{user.name}} {{user.surname}}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option *ngIf="!user.teamLeaderOf" color="danger" (click)="deleteUser(slidingItem, user)"><ion-icon name="trash"></ion-icon>Delete</ion-item-option>
+        <ion-item-option color="primary" (click)="editItemUser(slidingItem, user)"><ion-icon name="create"></ion-icon>Edit</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list *ngIf="showSpecialties">
+    <ion-item-sliding *ngFor="let item of Specialties" #slidingItem>
+      <ion-item>
+        <ion-icon name="school" slot="start"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteSpecialty(slidingItem, item)"><ion-icon name="trash"></ion-icon>Delete</ion-item-option>
+        <ion-item-option color="primary" (click)="editItemSpecialty(slidingItem, item)"><ion-icon name="create"></ion-icon>Edit</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

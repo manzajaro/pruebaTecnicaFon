@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="userData">
+    <ion-item>
+      <ion-avatar class="avatarImg" (click)="editPhoto()">
+        <img [src]="userData.avatar ? userData.avatar : 'https://picsum.photos/100'" (error)="updateUrl($event)"/>
+      </ion-avatar>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="userData.name" clearInput placeholder="Name" required (ionChange)="textCheck()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Surname</ion-label>
+      <ion-input type="text" [(ngModel)]="userData.surname" clearInput placeholder="Surname" required (ionChange)="textCheck()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="userData.email" clearInput placeholder="Email" required (ionChange)="textCheck()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Age</ion-label>
+      <ion-input type="number" [(ngModel)]="userData.age" clearInput placeholder="18" required (ionChange)="textCheck()"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!userData.id">
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="userData.type" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="developer" selected>Developer</ion-select-option>
+        <ion-select-option value="team-leader">Team-leader</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-row class="heightButtons">
+      <ion-col>
+        <ion-button class="buttonLeft" color="primary" (click)="saveUser()" [disabled]="!isCorrect">Accept</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="buttonRight" color="primary" (click)="cancel()">Cancel</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
+
+  <ion-list *ngIf="specialtyData">
+
+    <ion-item>
+      <ion-label position="fixed">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="specialtyData.name" clearInput placeholder="Name" required (ionChange)="textCheckSpecialty()"></ion-input>
+    </ion-item>
+
+    <ion-row class="heightButtons">
+      <ion-col>
+        <ion-button class="buttonLeft" color="primary" (click)="saveSpecialty()" [disabled]="!isCorrect">Accept</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="buttonRight" color="primary" (click)="cancel()">Cancel</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
+</ion-content>
