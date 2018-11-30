@@ -11,4 +11,3 @@ ENV DEBIAN_FRONTEND=noninteractive \
     
 WORKDIR myApp
 EXPOSE 8100 35729
-ENTRYPOINT ["ionic", "serve"]
