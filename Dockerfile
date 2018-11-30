@@ -10,8 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     GRADLE_VERSION=4.10.2
 
 #First Build so that it will be faster later
-RUN cd myApp && \
-    ionic cordova build android --prod --no-interactive --release
+RUN ionic cordova build android --prod --no-interactive --release
 
 WORKDIR myApp
 EXPOSE 8100 35729
