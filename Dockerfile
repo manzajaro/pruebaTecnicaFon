@@ -9,18 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     CORDOVA_VERSION=8.1.2\
     GRADLE_VERSION=4.10.2
     
-RUN apt-get update &&  \
-    apt-get install -y git wget curl unzip build-essential ruby ruby-dev ruby-ffi gcc make && \
-    curl --retry 3 -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" && \
-    tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
-    rm "node-v$NODE_VERSION-linux-x64.tar.gz" && \
-    npm install -g npm@"$NPM_VERSION" && \
-    npm install -g cordova@"$CORDOVA_VERSION" ionic@"$IONIC_VERSION" && \
-    npm cache clear --force && \
-    gem install sass && \
-    git config --global user.email "you@example.com" && \
-    git config --global user.name "Your Name" && \
+RUN /bin/sh -c 'ionic serve'
     
 WORKDIR myApp
 EXPOSE 8100 35729
-ENTRYPOINT ["bash", "ionic", "serve"]
