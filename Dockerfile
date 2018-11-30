@@ -9,7 +9,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     CORDOVA_VERSION=8.1.2\
     GRADLE_VERSION=4.10.2
     
-RUN /bin/sh -c 'ionic serve'
-    
 WORKDIR myApp
 EXPOSE 8100 35729
+ENTRYPOINT ["ionic", "serve"]
