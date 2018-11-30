@@ -11,5 +11,4 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR myApp
 EXPOSE 8100 35729
-CMD ["ionic", "serve"]
 ENTRYPOINT ["ionic", "serve"]
